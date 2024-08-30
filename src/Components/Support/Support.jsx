@@ -31,7 +31,7 @@ function Support() {
                   <div className="ml-4 mb-4">
                     <h3 className="mb-2 text-lg font-medium leading-6 text-gray-900">Contact</h3>
                     <p className="text-gray-600">Mobile: +91 8767507569</p>
-                    <p className="text-gray-600">Email: support@PeekMart.com</p>
+                    <p className="text-gray-600">Email: support@BitKart.com</p>
                   </div>
                 </li>
                 <li className="flex">

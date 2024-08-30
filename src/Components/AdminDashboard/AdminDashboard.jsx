@@ -27,7 +27,7 @@ function AdminDashboard() {
 
     return (
         <>
-            <div className={${menu ? "" : "-translate-x-full"} fixed top-0 left-0 z-40 w-64 h-screen transition-transform md:translate-x-0 bg-white shadow-2xl}>
+            <div className={`${menu ? "" : "-translate-x-full"} fixed top-0 left-0 z-40 w-64 h-screen transition-transform md:translate-x-0 bg-white shadow-2xl`}>
                 <div className='px-4 flex justify-between items-center h-20 border-b'>
                     <Link to="/">
                         <div className='flex items-center'>
@@ -77,9 +77,11 @@ function AdminDashboard() {
                     </ul>
                 </div>
             </div>
+
             <div className="w-full bg-blue-50 md:pl-64">
                 <nav className='w-full h-20 bg-white border'>
                     <FaBars className='md:hidden block text-4xl m-4' onClick={handleMenuToggle} />
+
                 </nav>
                 <Outlet />
             </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GiNotebook } from "react-icons/gi";
 import { BsGraphUp } from "react-icons/bs";
 import { VscGraph } from "react-icons/vsc";
@@ -7,7 +7,11 @@ import { BsFillBoxSeamFill } from "react-icons/bs";
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
 import 'react-calendar/dist/Calendar.css';
+import logo from '../../assets/logo.jpg';
+import Feedback from './Feedback';
+import ChartBoi from './ChartBoi';
 function Dashboard() {
+    useEffect(() => { document.title = "BitKart: Admin Dashboard"; })
     return (
         <div className='w-full p-6'>
             <div className='w-full'>
@@ -15,7 +19,10 @@ function Dashboard() {
                 <p className='font-semibold text-gray-600'>Welcome to your dashboard...</p>
             </div>
             <div className='grid grid-cols-1  gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-4 w-full my-5'>
-                <div className='w-full  bg-white rounded-md max-w-80 mx-auto px-5 py-3'>
+                <div className='w-full  bg-white rounded-md max-w-80 mx-auto px-5 py-3'
+                    style={{ boxShadow: "5px 6px 5px 0px rgba(0,0,0,0.34)" }}
+                
+                >
                     <div className='flex justify-between items-center'>
                         <div>
                             <h1 className='font-bold'>356</h1>
@@ -30,7 +37,10 @@ function Dashboard() {
                         <BsGraphUp className='pl-1 ' />
                     </div>
                 </div>
-                <div className='w-full  bg-white rounded-md max-w-80 mx-auto px-5 py-3'>
+                <div className='w-full  bg-white rounded-md max-w-80 mx-auto px-5 py-3'
+                    style={{ boxShadow: "5px 6px 5px 0px rgba(0,0,0,0.34)" }}
+                
+                >
                     <div className='flex justify-between items-center'>
                         <div>
                             <h1 className='font-bold'>$5680</h1>
@@ -45,7 +55,10 @@ function Dashboard() {
                         <BsGraphUp className='pl-1 ' />
                     </div>
                 </div>
-                <div className='w-full  bg-white rounded-md max-w-80 mx-auto px-5 py-3'>
+                <div className='w-full  bg-white rounded-md max-w-80 mx-auto px-5 py-3'
+                    style={{ boxShadow: "5px 6px 5px 0px rgba(0,0,0,0.34)" }}
+                
+                >
                     <div className='flex justify-between items-center'>
                         <div>
                             <h1 className='font-bold'>5.8K</h1>
@@ -60,7 +73,10 @@ function Dashboard() {
                         <BsGraphUp className='pl-1 ' />
                     </div>
                 </div>
-                <div className='w-full  bg-white rounded-md max-w-80 mx-auto px-5 py-3'>
+                <div className='w-full  bg-white rounded-md max-w-80 mx-auto px-5 py-3'
+                    style={{ boxShadow: "5px 6px 5px 0px rgba(0,0,0,0.34)" }}
+                
+                >
                     <div className='flex justify-between items-center'>
                         <div>
                             <h1 className='font-bold'>580</h1>
@@ -76,39 +92,14 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-            <div className='w-full flex items-center flex-col justify-around overflow-clip lg:flex-row'>
-                <div >
+            <div className='w-full flex py-4 items-center flex-col justify-around overflow-clip gap-4 lg:flex-row '>
+                
+                <ChartBoi />
 
-
-                    <BarChart
-                        xAxis={[{ scaleType: 'band', data: ['Jan', 'Feb', 'March '] }]}
-                        series={[
-                            { data: [400, 300, 500], color: 'rgba(75, 192, 192, 1)' },
-                            { data: [100, 600, 300], color: 'rgba(54, 162, 235, 1)' },
-                            { data: [200, 500, 600], color: 'rgba(255, 99, 132, 1)' }
-                        ]}
-                        width={400}
-                        height={400}
-                    />
-
-                </div>
-                <div>
-                    <PieChart
-                        series={[
-                            {
-                                data: [
-                                    { id: 0, value: 100, label: 'Men' ,color: 'rgba(75, 192, 192, 1)' },
-                                    { id: 1, value: 150, label: 'Womem',color:'rgba(54, 162, 235, 1)' },
-                                    { id: 2, value: 200, label: 'Child',color: 'rgba(255, 99, 132, 1)' },
-                                ],
-                            },
-                        ]}
-                        width={400}
-                        height={200}
-                    />
-                </div>
+                
+                <Feedback />
             </div>
-            
+
         </div>
     )
 }
