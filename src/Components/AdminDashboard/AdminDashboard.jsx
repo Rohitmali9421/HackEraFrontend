@@ -9,20 +9,15 @@ import { GiNotebook } from "react-icons/gi";
 import { BiSolidCoupon } from "react-icons/bi";
 import { BiLogOut } from "react-icons/bi";
 import { Link, Outlet } from 'react-router-dom';
-import axios from 'axios';
-import { useAuth } from '../../Contexts/UserContext';
+
 
 function AdminDashboard() {
-    const [admin, setAdmin] = useState(0);
     const [menu, toggleMenu] = useState(false);
-    const [loader, setLoader] = useState(true);
-    const { auth } = useAuth();
+
 
     const handleMenuToggle = () => {
         toggleMenu(!menu);
     };
-
-    
 
     return (
         <>
@@ -31,7 +26,7 @@ function AdminDashboard() {
                     <Link to="/">
                         <div className='flex items-center'>
                             <LiaCreativeCommonsSampling className='mr-2 text-3xl text-blue-500' />
-                            <h1 className='font-bold text-2xl text-blue-500'>PeekMart</h1>
+                            <h1 className='font-bold text-2xl text-blue-500'>BitMart</h1>
                         </div>
                     </Link>
                     <IoIosArrowDropleftCircle className='md:hidden block text-blue-500 text-xl' onClick={handleMenuToggle} />
