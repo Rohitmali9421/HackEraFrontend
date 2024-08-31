@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import Baner from "./Baner";
+import Tranding from "./Trending";
+import Category from "./Category";
 
 function Home() {
     
@@ -8,6 +10,9 @@ function Home() {
 
         <main>
             <Baner/>
+            <Tranding/>
+            <Category/>
+
         </main>
     )
 }
