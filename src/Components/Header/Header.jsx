@@ -66,11 +66,8 @@ function Header() {
           </ul>
         </div>
 
-        <div className="flex gap-x-6 gap-y-4 ml-auto">
-          <div
-            className='flex border-2 focus-within:border-gray-400 shadow-md rounded-full px-6 py-3 overflow-hidden max-w-52 max-lg:hidden'>
-            <input type='text' placeholder='Search something...' className='w-full text-sm bg-transparent outline-none pr-2' />
-          </div>
+        <div className="flex gap-x-6 gap-y-4 ml-auto items-center">
+        <SearchBar/>
 
           <div className='flex items-center space-x-8 '>
             <span className="relative cursor-pointer"
@@ -93,7 +90,7 @@ function Header() {
                 </div>
               )}
               <FaRegHeart className='text-2xl' />
-              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">0</span>
+              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">{auth.user?auth.user.cart.length:0}</span>
             </span>
 
             <span className="relative cursor-pointer"
@@ -115,7 +112,7 @@ function Header() {
                 </div>
               )}
               <PiShoppingCartBold className='text-2xl' />
-              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">0</span>
+              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">{auth.user?auth.user.fav.length:0}</span>
             </span>
 
             {auth.user ? (
@@ -161,3 +158,36 @@ function Header() {
 }
 
 export default Header;
+
+
+function SearchBar() {
+  return (
+    <form className="form relative w-50">
+      <button className="absolute left-2 -translate-y-1/2 top-1/2 p-1">
+        <svg
+          width="17"
+          height="16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-labelledby="search"
+          className="w-5 h-5 text-gray-700"
+        >
+          <path
+            d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+            stroke="currentColor"
+            strokeWidth="1.333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>
+        </svg>
+      </button>
+      <input
+        className="input rounded-full px-8 py-2 border-2 border-gray-400 focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md bg-slate-100 w-full"
+        placeholder="Search..."
+        required=""
+        type="text"
+      />
+    </form>
+  );
+}
