@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactStars from 'react-stars'
+import { CiHeart } from 'react-icons/ci';
+import { AiFillHeart } from 'react-icons/ai';
 
 
 const ProductCard = () => {
 
-  const ratingChanged = (newRating) => {
-    console.log(newRating)
-  }
+
+  const [isLiked, setIsLiked] = useState(false); // State to manage heart icon color
+  const [likeCount, setLikeCount] = useState(0); // State to manage like count
+
+  const handleLike = () => {
+    if (!isLiked) {
+      setLikeCount(likeCount + 1); // Increase like count on click
+      setIsLiked(true); // Set liked state to true
+    }
+  };
+
+  const handleDoubleClick = () => {
+    if (isLiked) {
+      setLikeCount(likeCount - 1); // Decrease like count on double-click
+      setIsLiked(false); // Set liked state to false
+    }
+  };
+
+
+    const ratingChanged = (newRating) => {
+        console.log(newRating)
+      }
 
   return (
 
@@ -30,10 +51,23 @@ const ProductCard = () => {
                 size={24}
                 color2={'#ffd700'} />
 
-            </div>
-            <div>
+            </div >
+
+    <div className='flex justify-between px-4'>
+    <div>
               $50
-            </div>
+           </div>
+           <div
+                onClick={handleLike}
+                onDoubleClick={handleDoubleClick}
+                className="cursor-pointer flex items-center space-x-1"
+              >
+                {isLiked ? <AiFillHeart size={"24px"} color="red" /> : <CiHeart size={"24px"} />}
+                <span>{likeCount}</span>
+              </div>
+    </div>
+          
+           
 
             <button
               type="button"

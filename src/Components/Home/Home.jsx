@@ -1,5 +1,9 @@
 import { useEffect } from "react";
 import Baner from "./Baner";
+import Landingpage from "./Landingpage";
+import Footer from "../Footer/Footer";
+import ProductCard from "../Product/ProductCard";
+import Tranding from "./Tranding";
 
 function Home() {
     
@@ -8,6 +12,14 @@ function Home() {
 
         <main>
             <Baner/>
+            <Landingpage/>
+
+          <Tranding/>
+          
+
+            <Footer/>
+            
+
         </main>
     )
 }
