@@ -15,14 +15,14 @@ import { useAuth } from '../../Contexts/UserContext';
 
 function Dashboard() {
 
-  const { auth, logout } = useAuth()
-  const  user  = auth.user;
-    useEffect(()=>{
-        if(!user || user.role !== 'admin'){
-            window.location.href = '/login';
-        }
-    },[])
-    useEffect(() => { document.title = "BitKart: Admin Dashboard"; })
+//   const { auth, logout } = useAuth()
+//   const  user  = auth.user;
+//     useEffect(()=>{
+//         if(!user || user.role !== 'admin'){
+//             window.location.href = '/login';
+//         }
+//     },[])
+//     useEffect(() => { document.title = "BitKart: Admin Dashboard"; })
     return (
         <div className='w-full p-6'>
             <div className='w-full'>

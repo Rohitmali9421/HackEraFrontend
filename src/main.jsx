@@ -27,6 +27,8 @@ import Coupons from './Components/AdminDashboard/Coupons.jsx';
 import AddProduct from './Components/AdminDashboard/AddProduct.jsx';
 import EditProduct from './Components/AdminDashboard/EditProducts.jsx';
 import { ProductDetail } from './Components/Product/ProductDetail.jsx';
+import CategoryProvider from './Contexts/CategoryContext.jsx';
+import Settings from './Components/Home/Settings.jsx';
 
 
 
@@ -43,6 +45,7 @@ const router = createBrowserRouter(
         <Route path="about" element={<About />} />
         <Route path="support" element={<Support />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="Settings" element={<Settings />} />
       </Route>
       <Route path="/admin" element={<AdminDashboard />}>
         <Route path="" element={<Dashboard />} />
@@ -63,10 +66,14 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
 
-    <AuthProvider>
-      <RouterProvider router={router} />
-      <ToastContainer />
-    </AuthProvider>
+<StrictMode>
+    <CategoryProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </AuthProvider>
+    </CategoryProvider>
+  </StrictMode>
 
   </StrictMode>
 );

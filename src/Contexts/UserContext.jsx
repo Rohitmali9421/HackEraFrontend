@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
     if (token) {
       try {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        const response = await axios.get('https://mern-server-rohit.vercel.app/user/infor');
+        const response = await axios.get('http://localhost:8000/user/getuser');
         setAuth({ user: response.data, token });
       } catch (error) {
         console.error('Failed to fetch user info:', error);
@@ -29,18 +29,16 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const addToCart = async (id) => {
-    console.log("Done");
-    
-    // try {
-    //   await axios.patch('https://mern-server-rohit.vercel.app/user/cart', {
-    //     productId: id
-    //   });
-    //   toast.success("Added to cart");
-    //   initializeAuth();
-    // } catch (error) {
-    //   console.error('Failed to add to cart:', error);
-    //   toast.error('Failed to add to cart.');
-    // }
+    try {
+      await axios.patch('https://mern-server-rohit.vercel.app/user/cart', {
+        productId: id
+      });
+      toast.success("Added to cart");
+      initializeAuth();
+    } catch (error) {
+      console.error('Failed to add to cart:', error);
+      toast.error('Failed to add to cart.');
+    }
   };
 
 
@@ -51,7 +49,6 @@ const AuthProvider = ({ children }) => {
         email,
         password,
       });
-     
       const { user, token } = response.data;
       setAuth({ user, token });
       localStorage.setItem('token', token);

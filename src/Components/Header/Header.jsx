@@ -15,18 +15,10 @@ function Header() {
   const [showCart, setShowCart] = useState(false);
 
   const { auth, logout } = useAuth()
-  const user = auth.user;
+
   const toggleMenu = () => {
     setMenu(!menu);
   };
-  useEffect(() => {
-    if (!auth.user) {
-      // window.location.href = '/login';
-      setFavList([]);
-    } else {
-      setFavList(auth.user.favList || [112, 123, 312]);
-    }
-  }, [user])
 
   const [dropdown, setDropdown] = useState(false);
   const toggleDropdown = () => {

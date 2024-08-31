@@ -22,8 +22,37 @@ function AdminDashboard() {
     const handleMenuToggle = () => {
         toggleMenu(!menu);
     };
+    const checkAdmin = async () => {
 
-    
+        if (auth?.token) {
+            try {
+                const response = await axios.get('http://localhost:8000/user/getuser', {
+                });
+                setAdmin(response.data.role);
+            } catch (error) {
+                console.error('Failed to fetch user info:', error);
+            }
+        }
+        setLoader(false);
+    };
+
+    useEffect(() => {
+        checkAdmin();
+    }, [auth]);
+
+    if (loader) {
+        return (
+            <div className='w-full h-screen flex items-center justify-center'>
+                <div className="w-24 h-24 border-8 border-dashed rounded-full animate-spin border-blue-600"></div>
+            </div>
+        );
+    }
+
+    if (!admin) {
+        return (<h1>404 not found</h1>);
+    }
+
+
 
     return (
         <>
@@ -31,7 +60,7 @@ function AdminDashboard() {
                 <div className='px-4 flex justify-between items-center h-20 border-b'>
                     <Link to="/">
                         <div className='flex items-center'>
-                            <img src={logo} alt="" className='w-[9rem] md:w-auto'/>
+                            <img src={logo} alt="" className='w-[9rem] md:w-auto' />
                         </div>
                     </Link>
                     <IoIosArrowDropleftCircle className='md:hidden block text-blue-500 text-4xl' onClick={handleMenuToggle} />

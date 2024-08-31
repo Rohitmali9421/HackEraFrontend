@@ -83,7 +83,7 @@ function Login() {
               {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
             </div>
             <Link to="/signup">
-              <p className='text-end mt-2 text-sm text-blue-400'>New to BitKart? Create an account</p>
+              <p className='text-end mt-2 text-sm text-blue-400'>New to PeekMart? Create an account</p>
             </Link>
           </div>
 
