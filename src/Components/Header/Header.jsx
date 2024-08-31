@@ -132,13 +132,12 @@ function Header() {
 
           <div className='flex items-center space-x-8'>
             <span className="relative cursor-pointer"
-              onClick={() => setShowFav(!showFav)}
+              onClick={() => (auth.user ?  navigate("/favourites"): setShowFav(!showFav))}
             >
               {showFav && (
-                <div className="absolute -bottom-20 right-0 z-10 w-40 bg-slate-200 h-min rounded-md shadow-sm p-4">
-                  {auth.user ? (
-                    <div>Nothing here</div>
-                  ) : (
+                <div className="absolute -bottom-20 right-0 z-10 w-40 bg-slate-200 h-min rounded-md shadow-sm p-4"
+                >
+                  {!  auth.user&& (
                     <Link to="/login">
                       <button className='w-full px-5 py-2 text-sm rounded-full text-white border-2 border-[#007bff] bg-[#007bff] hover:bg-[#004bff]'>
                         Login
@@ -154,13 +153,12 @@ function Header() {
             </span>
 
             <span className="relative cursor-pointer"
-              onClick={() => setShowCart(!showCart)}
+              onClick={() =>(auth.user ? navigate("/cart") : setShowCart(!showCart))}
             >
               {showCart && (
-                <div className="absolute -bottom-20 right-0 z-10 w-40 bg-slate-200 h-min rounded-md shadow-sm p-4">
-                  {auth.user ? (
-                    <div>Nothing here</div>
-                  ) : (
+                <div className="absolute -bottom-20 right-0 z-10 w-40 bg-slate-200 h-min rounded-md shadow-sm p-4"
+                >
+                  {!auth.user &&(
                     <Link to="/login">
                       <button className='w-full px-5 py-2 text-sm rounded-full text-white border-2 border-[#007bff] bg-[#007bff] hover:bg-[#004bff]'>
                         Login
