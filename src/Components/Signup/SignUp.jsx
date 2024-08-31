@@ -6,7 +6,7 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
-  const { auth, signup } = useAuth();
+  const { auth, signUp } = useAuth();
   const navigate = useNavigate();
   const [serverError, setServerError] = useState('');
 
@@ -18,8 +18,8 @@ function Signup() {
 
   // Handle form submission
   const onSubmit = async (data) => {
-    const { email, password } = data;
-    signup(email, password, setServerError);
+    const { name, email, password } = data;
+    signUp(name, email, password, setServerError);
   };
 
   // Redirect if user is already authenticated
@@ -44,6 +44,15 @@ function Signup() {
             </div>
           )}
           <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
+            <div className="block relative">
+              <label htmlFor="name" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Name</label>
+              <input
+                id="name"
+                className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
+                {...register('name', { required: 'Name is required', pattern: { value: /\S/, message: 'Name is invalid' } })}
+              />
+              {errors.name && <div className="text-red-600 text-sm mt-1">{errors.name.message}</div>}
+            </div>
             <div className="block relative">
               <label htmlFor="email" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Email</label>
               <input

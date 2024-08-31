@@ -14,6 +14,8 @@ function Header() {
   const { auth, logout } = useAuth();
   const navigate = useNavigate();
   const toggleMenu = () => {
+    console.log(menu);
+
     setMenu(!menu);
   };
 
@@ -23,62 +25,78 @@ function Header() {
         <button id="toggleOpen" className='lg:hidden' onClick={toggleMenu}>
           <FaBars className='text-xl' />
         </button>
-        <Link to="/" className='lg:ml-10'>
+        <Link to="/" className=''>
           <img src={logo} alt="logo" className='h-14 cursor-pointer' />
         </Link>
 
-        <div id="collapseMenu"
-          className={`lg:ml-10 max-lg:hidden lg:!block ${menu ? 'block' : 'hidden'}`}>
-          <ul className='lg:flex lg:gap-x-3 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 text-'>
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  ` ${isActive ? "text-blue-500 " : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
-                }>
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
-                }>
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/product"
-                className={({ isActive }) =>
-                  ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
-                }>
-                Products
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/support"
-                className={({ isActive }) =>
-                  ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
-                }>
-                Support
-              </NavLink>
-            </li>
-            {auth.user && auth.user.role === 1 && (
-               <li>
-               <NavLink
-                 to="/admin"
-                 className={({ isActive }) =>
-                   ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
-                 }>
-                 Dashboard
-               </NavLink>
-             </li>
-            )}
-          </ul>
-        </div>
+        {menu && (
+          <div id="collapseMenu" className="lg:ml-10 shadow-xl bg-black lg:bg-transparent">
+            <ul className="lg:flex lg:gap-x-3 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    `${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/product"
+                  className={({ isActive }) =>
+                    `${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                  }
+                >
+                  Products
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/support"
+                  className={({ isActive }) =>
+                    `${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                  }
+                >
+                  Support
+                </NavLink>
+              </li>
+              {auth.user && auth.user.role === 1 && (
+                <li>
+                  <NavLink
+                    to="/admin"
+                    className={({ isActive }) =>
+                      `${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
 
         <div className="flex gap-x-6 gap-y-4 ml-auto items-center">
           <SearchBar />
@@ -221,7 +239,7 @@ function SearchBar() {
           </svg>
         </button>
         <input
-          className="input rounded-full px-8 py-2 w-full text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="input rounded-full border-[1px] px-8 py-2 w-full text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           type="text"
           placeholder="Search products..."
           value={query}

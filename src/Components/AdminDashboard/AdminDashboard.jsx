@@ -118,7 +118,20 @@ function AdminDashboard() {
                         <div></div>
                         <div
                             className="relative cursor-pointer flex items-center gap-4 p-2 mr-10 rounded-md"
+                            onMouseEnter={() => setUserMenu(true)}
+                            onMouseLeave={() => setUserMenu(false)}
                         >
+                            {userMenu && (
+                                <div className="absolute bg-slate-200 text-center flex flex-col p-4  w-40 top-[60px] gap-2 -right-1 rounded-md shadow-md">
+                                    <Link to="/cart" className='rounded-xl p-1 cursor-pointer hover:bg-slate-300'>My Cart</Link>
+                                    <Link to="/settings">
+                                        <p className='rounded-xl p-1 cursor-pointer hover:bg-slate-300'>
+                                            Update Profile
+                                        </p>
+                                    </Link>
+                                    <p className='rounded-xl p-1 bg-red-500 text-white cursor-pointer hover:bg-red-600' onClick={logout}>Logout</p>
+                                </div>
+                            )}
                             <img
                                 src={auth.user.profile_picture.url}
                                 alt="avatar"
