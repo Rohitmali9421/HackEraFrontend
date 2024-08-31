@@ -6,7 +6,6 @@ import { AiFillHeart } from 'react-icons/ai';
 
 const ProductCard = () => {
 
-<<<<<<< HEAD
 
   const [isLiked, setIsLiked] = useState(false); // State to manage heart icon color
   const [likeCount, setLikeCount] = useState(0); // State to manage like count
@@ -29,11 +28,6 @@ const ProductCard = () => {
     const ratingChanged = (newRating) => {
         console.log(newRating)
       }
-=======
-  const ratingChanged = (newRating) => {
-    console.log(newRating)
-  }
->>>>>>> 9ec4653d475978a98a9d43f26b8c80aba201eb4e
 
   return (
 
@@ -57,7 +51,6 @@ const ProductCard = () => {
                 size={24}
                 color2={'#ffd700'} />
 
-<<<<<<< HEAD
             </div >
 
     <div className='flex justify-between px-4'>
@@ -75,12 +68,6 @@ const ProductCard = () => {
     </div>
           
            
-=======
-            </div>
-            <div>
-              $50
-            </div>
->>>>>>> 9ec4653d475978a98a9d43f26b8c80aba201eb4e
 
             <button
               type="button"
