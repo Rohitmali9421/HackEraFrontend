@@ -66,6 +66,17 @@ function Header() {
                 Support
               </NavLink>
             </li>
+            {auth.user && auth.user.role === 1 && (
+               <li>
+               <NavLink
+                 to="/admin"
+                 className={({ isActive }) =>
+                   ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                 }>
+                 Dashboard
+               </NavLink>
+             </li>
+            )}
           </ul>
         </div>
 

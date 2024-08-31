@@ -15,9 +15,10 @@ import { useAuth } from '../../Contexts/UserContext';
 
 function AdminDashboard() {
     const [admin, setAdmin] = useState(0);
+    const [userMenu, setUserMenu] = useState(false)
     const [menu, toggleMenu] = useState(false);
     const [loader, setLoader] = useState(true);
-    const { auth } = useAuth();
+    const { auth, logout } = useAuth();
 
     const handleMenuToggle = () => {
         toggleMenu(!menu);
@@ -98,8 +99,11 @@ function AdminDashboard() {
                             </li>
                         </Link>
                     </ul>
+
                     <ul className='mb-32'>
-                        <li className='flex items-center my-3 hover:bg-blue-50 rounded-md px-4 py-2'>
+                        <li className='flex items-center my-3 hover:bg-blue-50 rounded-md cursor-pointer px-4 py-2'
+                            onClick={logout}
+                        >
                             <BiLogOut className='text-xl text-red-600 mr-3' />
                             <h1 className='font-bold'>Logout</h1>
                         </li>
@@ -108,8 +112,25 @@ function AdminDashboard() {
             </div>
 
             <div className="w-full bg-blue-50 md:pl-64">
-                <nav className='w-full h-20 bg-white border'>
-                    <FaBars className='md:hidden block text-4xl m-4' onClick={handleMenuToggle} />
+                <nav className='w-full h-20 bg-white border flex flex-between'>
+                    <div className='w-full flex justify-between'>
+                        <FaBars className='md:hidden block text-4xl m-4' onClick={handleMenuToggle} />
+                        <div></div>
+                        <div
+                            className="relative cursor-pointer flex items-center gap-4 p-2 mr-10 rounded-md"
+                        >
+                            <img
+                                src={auth.user.profile_picture.url}
+                                alt="avatar"
+                                className="h-10 w-10 rounded-full"
+                            />
+                            <div>
+                                <p className="text-base font-bold">{auth.user.name}</p>
+                                <p className="text-sm font-normal">{auth.user.role ? "Admin" : "User"}</p>
+                            </div>
+                            <img src={"src/assets/downArrow.png"} alt="" className="h-2 w-3 rounded-full" />
+                        </div>
+                    </div>
 
                 </nav>
                 <Outlet />

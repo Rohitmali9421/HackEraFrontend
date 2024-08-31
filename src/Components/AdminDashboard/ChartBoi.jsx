@@ -6,13 +6,7 @@ const ChartBoi = () => {
     const labels = ["January", "February", "March", "April", "May", "June"];
     const [dataType, setDataType] = useState("today");
     const [mode, setMode] = useState("online");
-    // useEffect(() => {
-    //     fetchTotalSales().then((data) => {
-    //         // console.log('Total Sales:', data);
-    //     }).catch((error) => {
-    //         console.error('Error fetching total sales:', error);
-    //     });
-    // }, []);
+ 
     const data = {
         labels: labels,
         datasets: [
@@ -71,7 +65,7 @@ const ChartBoi = () => {
     };
 
     return (
-        <div className="p-3 bg-white  rounded-xl w-full md:w-[55%]"
+        <div className="p-3 z-20 bg-white  rounded-xl w-full lg:w-[55%]"
         style={{ boxShadow: "5px 6px 5px 0px rgba(0,0,0,0.34)" }}
     
         >
