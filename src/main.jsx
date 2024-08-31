@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 import AuthProvider from './Contexts/UserContext.jsx';
 
-
 import Layout from './Components/Layout/Layout.jsx';
 import Home from './Components/Home/Home.jsx';
 import Login from './Components/Login/Login.jsx';
@@ -16,7 +15,6 @@ import Cart from './Components/Cart/Cart.jsx';
 import About from './Components/About/About.jsx';
 import Support from './Components/Support/Support.jsx';
 import Product from './Components/Product/Product.jsx';
-
 
 import AdminDashboard from './Components/AdminDashboard/AdminDashboard.jsx';
 import Dashboard from './Components/AdminDashboard/Dashboard.jsx';
@@ -30,13 +28,10 @@ import { ProductDetail } from './Components/Product/ProductDetail.jsx';
 import CategoryProvider from './Contexts/CategoryContext.jsx';
 import Settings from './Components/Home/Settings.jsx';
 
-
-
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      {/* <Route path='/' element={<Layout />}> */}
+      <Route path='/' element={<Layout />}>
         <Route path='/' element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
@@ -46,33 +41,27 @@ const router = createBrowserRouter(
         <Route path="support" element={<Support />} />
         <Route path="cart" element={<Cart />} />
         <Route path="Settings" element={<Settings />} />
-      <Route path="/admin" element={<AdminDashboard />}>
-        <Route path="" element={<Dashboard />} />
-        <Route path="products" element={<Products />} />
-        <Route path="products/add" element={<AddProduct />} />
-        <Route path="products/edit/:id" element={<EditProduct />} />
-        <Route path="category" element={<Category />} />
-        <Route path="orders" element={<Orders />} />
-        <Route path="coupons" element={<Coupons />} />
+        <Route path="/admin" element={<AdminDashboard />}>
+          <Route path="" element={<Dashboard />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/add" element={<AddProduct />} />
+          <Route path="products/edit/:id" element={<EditProduct />} />
+          <Route path="category" element={<Category />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="coupons" element={<Coupons />} />
+        </Route>
       </Route>
-
-
-
     </>
   )
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
-
-<StrictMode>
     <CategoryProvider>
       <AuthProvider>
         <RouterProvider router={router} />
         <ToastContainer />
       </AuthProvider>
     </CategoryProvider>
-  </StrictMode>
-
   </StrictMode>
 );
