@@ -45,7 +45,7 @@ function Baner() {
       <div className='slider-container overflow-x-clip' ref={elementRef}>
         <Slider {...settings} className="">
           <div className="hidden md:inline-block">
-            <img src="https://res.cloudinary.com/dhturqqs5/image/upload/v1722354886/Firebolt-landing-page/uislflgwxi9dwt0ngkkb.webp"  loading="lazy" alt="" />
+            <img src="https://img.freepik.com/free-photo/showing-cart-trolley-shopping-online-sign-graphic_53876-133967.jpg?t=st=1725082374~exp=1725085974~hmac=717862925af62cdcc41123b2f3fee3d28a09da64f897c791d5a7e0beedf9d1ca&w=826"  loading="lazy" alt="" />
           </div>
           <div className="hidden md:inline-block">
             <img src="https://res.cloudinary.com/dhturqqs5/image/upload/v1722354804/Firebolt-landing-page/g7gtyvpccinxez2c3udj.webp" loading="lazy" alt="" />

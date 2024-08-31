@@ -112,7 +112,8 @@ function Header() {
                 </div>
               )}
               <PiShoppingCartBold className='text-2xl' />
-              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">{auth.user?auth.user.fav.length:0}</span>
+              {/* <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">{auth.user?auth.user.fav.length:0}</span> */}
+              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">{auth.user?4:0}</span>
             </span>
 
             {auth.user ? (
@@ -159,11 +160,24 @@ function Header() {
 
 export default Header;
 
-
 function SearchBar() {
+  const [query, setQuery] = useState('');
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Perform your query logic here
+    console.log('Query:', query);
+    // Example: Redirect to a search results page
+    window.location.href = `/search?query=${encodeURIComponent(query)}`;
+  };
+
   return (
-    <form className="form relative w-50">
-      <button className="absolute left-2 -translate-y-1/2 top-1/2 p-1">
+    <form className="form relative w-50" onSubmit={handleSubmit}>
+      <button type="submit" className="absolute left-2 -translate-y-1/2 top-1/2 p-1">
         <svg
           width="17"
           height="16"
@@ -187,6 +201,8 @@ function SearchBar() {
         placeholder="Search..."
         required=""
         type="text"
+        value={query}
+        onChange={handleInputChange}
       />
     </form>
   );
