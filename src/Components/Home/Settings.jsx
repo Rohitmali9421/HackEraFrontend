@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextField, Button, Avatar, Container, Typography, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 import axios from 'axios'
@@ -8,7 +8,7 @@ const Input = styled('input')({
 });
 
 export default function Settings() {
-    const [loader, setLoader]=useState(false)
+    const [loader, setLoader] = useState(false)
     const [active, setActive] = useState('')
     const [profilePicture, setProfilePicture] = useState(null);
     const [fname, setFName] = useState('');
@@ -19,7 +19,12 @@ export default function Settings() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [gender, setGender] = useState('');
-    const {auth}=useAuth();
+    const { auth } = useAuth();
+    useEffect(() => {
+        if (!auth?.token) {
+            window.location.href = '/login';
+        }
+    }, [])
 
 
 
@@ -79,24 +84,24 @@ export default function Settings() {
 
         const updateUser = async () => {
             try {
-              const formData = new FormData();
-              formData.append('profile_picture', profilePicture.files[0]); // Assuming you have a file input
-              formData.append('name', fullname); // Add other fields as necessary
-          
-              const response = await axios.put('http://your-server-url/update-user', formData, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                  'Authorization': 'Bearer your-token' // If authentication is required
-                }
-              });
-          
-              console.log(response.data);
+                const formData = new FormData();
+                formData.append('profile_picture', profilePicture.files[0]); // Assuming you have a file input
+                formData.append('name', fullname); // Add other fields as necessary
+
+                const response = await axios.put('http://your-server-url/update-user', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': 'Bearer your-token' // If authentication is required
+                    }
+                });
+
+                console.log(response.data);
             } catch (error) {
-              console.error('Error updating user:', error);
+                console.error('Error updating user:', error);
             }
-          };
-          
-          updateUser();
+        };
+
+        updateUser();
 
 
 
@@ -108,7 +113,7 @@ export default function Settings() {
 
 
     return (
-        <div className="sm:container mt-20 bg-white">
+        <div className="sm:container  bg-purple-50 mx-auto">
             <div className="title p-4 flex items-center gap-4 h-20 text-xl text-gray-500 border-[2px] border-gray-500">
                 <p className={active === 'personal' ? `text-purple-500 cursor-pointer` : 'text-gray-500 cursor-pointer'} onClick={() => {
                     window.location.href = '#personalInfo'
@@ -124,15 +129,15 @@ export default function Settings() {
 
                 <div className='md:w-[30%]'>
                     <p className='font-extrabold text-xl'>Personal Information</p>
-                    <p className='font-base text-xl'>Use permanant address whwre you can recieve mail</p>
+                    <p className='font-base text-xl'>Use permanant address where you can recieve mail</p>
                 </div>
 
                 <div className='md:w-[60%]  my-5 md:my-0 '>
                     <div className="flex items-center ">
                         <img
-                            className="w-40 h-40  rounded-xl mb-4"
+                            className="w-40 h-40 shadow-md rounded-xl mb-4"
                             // src={profilePicture}
-                            src={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.wallpapersden.com%2Fimage%2Fdownload%2Fpc-marvel-s-spider-man-remastered_bWpqameUmZqaraWkpJRmbmdlrWZlbWU.jpg&f=1&nofb=1&ipt=6fac76a63e8a3e15ae363a29a2ba811570d35f088e32c56c72c4ac4d987b683c&ipo=images"}
+                            src={auth.user.profile_picture.url}
                             alt="Profile"
                         />
                         <div className='h-full flex flex-col  gap-5 mx-10'>
