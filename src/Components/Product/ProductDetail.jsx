@@ -26,8 +26,37 @@ function ProductDetail() {
   }
 
   useEffect(() => {
-    fetchProduct()
-  }, [])
+    fetchProduct();
+    startTimeRef.current = Date.now();
+
+    const handleBeforeUnload = async () => {
+      const endTime = Date.now();
+      const timeSpent = endTime - startTimeRef.current;
+      console.log(timeSpent / 1000);
+
+      if (product) {
+        try {
+          console.log(product._id)
+          await axios.patch('http://localhost:8000/user/updateRecomandationdata', {
+            view_time: timeSpent / 1000,
+            product_name: product.title,
+            product_id: product._id,
+            liked: 0,
+            visit_count: 1,
+          });
+        } catch (error) {
+          console.error('Failed to send user progress:', error);
+        }
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      handleBeforeUnload();
+    };
+  }, [id, product]);
 
   return (
     <div className='w-full grid grid-cols-1 md:grid-cols-2 my-4 '>
