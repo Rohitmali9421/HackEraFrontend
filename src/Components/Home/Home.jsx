@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import Baner from "./Baner";
+import NewLaunches from "./NewLaunches/NewLaunches";
 import Category from "./Category";
-import Landingpage from "./Landingpage";
-import Trending from "./Trending";
+import Trending from "./Trending/Trending";
+
 function Home() {
     
     useEffect(()=>{document.title = "BeatMart: Home";})
@@ -10,9 +11,9 @@ function Home() {
 
         <main>
             <Baner/>
-            {/* <Landingpage/> */}
-
-          <Trending/>
+            <NewLaunches/>
+            <Category/>
+            <Trending/>
           
 
            

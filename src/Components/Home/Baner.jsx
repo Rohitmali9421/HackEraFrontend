@@ -1,3 +1,4 @@
+import { Fade } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 
@@ -34,6 +35,7 @@ function Baner() {
     dots: true,
     infinite: true,
     slidesToShow: 1,
+    Fade:true,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,

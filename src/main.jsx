@@ -11,7 +11,7 @@ import Layout from './Components/Layout/Layout.jsx';
 import Home from './Components/Home/Home.jsx';
 import Login from './Components/Login/Login.jsx';
 import SignUp from './Components/Signup/SignUp.jsx';
-import Cart from './Components/Cart/Cart.jsx';
+// import Cart from './Components/Cart/Cart.jsx';
 import About from './Components/About/About.jsx';
 import Support from './Components/Support/Support.jsx';
 import Product from './Components/Product/Product.jsx';
@@ -41,7 +41,7 @@ const router = createBrowserRouter(
         <Route path="product/:id" element={<ProductDetail/>} />
         <Route path="about" element={<About />} />
         <Route path="support" element={<Support />} />
-        <Route path="cart" element={<Cart />} />
+        {/* <Route path="cart" element={<Cart />} /> */}
         <Route path="Settings" element={<Settings />} />
         <Route path="/ourteam" element={<OurTeam />} />
         
