@@ -29,14 +29,70 @@ function Header() {
           <img src={logo} alt="logo" className='h-14 cursor-pointer' />
         </Link>
 
-        <div id="collapseMenu"
-          className={`lg:ml-10 font-thin shadow-xl `}>
-          <ul className='lg:flex lg:gap-x-3 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 text-'>
-            <li>
+        {menu && <div id="collapseMenu"
+          className={`lg:ml-10   shadow-xl `}>
+          <ul className='lg:flex bg-purple-100 lg:gap-x-3 max-lg:space-y-3 max-lg:fixed  max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 text-'>
+            <li className='bg-white rounded-lg p-2 hover:bg-slate-50 inline-block cursor-pointer'
+              onClick={() => setMenu(false)}>
+              <img width="40" height="40" src="https://img.icons8.com/office/40/delete-sign.png" alt="delete-sign" />
+            </li>
+            <li className='bg-white rounded-lg p-2 hover:bg-slate-50'>
               <NavLink
                 to="/"
                 className={({ isActive }) =>
                   ` ${isActive ? "text-blue-500 " : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                }>
+                Home
+              </NavLink>
+            </li>
+            <li className='bg-white rounded-lg p-2 hover:bg-slate-50'>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                }>
+                About
+              </NavLink>
+            </li>
+            <li className='bg-white rounded-lg p-2 hover:bg-slate-50'>
+              <NavLink
+                to="/product"
+                className={({ isActive }) =>
+                  ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                }>
+                Products
+              </NavLink>
+            </li>
+            <li className='bg-white rounded-lg p-2 hover:bg-slate-50'>
+              <NavLink
+                to="/support"
+                className={({ isActive }) =>
+                  ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                }>
+                Support
+              </NavLink>
+            </li>
+            {auth.user && auth.user.role === 1 && (
+              <li className='bg-white rounded-lg p-2 hover:bg-slate-50'>
+                <NavLink
+                  to="/admin"
+                  className={({ isActive }) =>
+                    ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                  }>
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
+
+          </ul>
+        </div>}
+        <div className="flex items-center justify-center  py-4 ">
+          <ul className="flex space-x-4">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
                 }>
                 Home
               </NavLink>
@@ -68,17 +124,6 @@ function Header() {
                 Support
               </NavLink>
             </li>
-            {auth.user && auth.user.role === 1 && (
-              <li>
-                <NavLink
-                  to="/admin"
-                  className={({ isActive }) =>
-                    ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
-                  }>
-                  Dashboard
-                </NavLink>
-              </li>
-            )}
           </ul>
         </div>
 
