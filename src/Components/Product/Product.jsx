@@ -16,7 +16,7 @@ function Product() {
     };
         const fetchProducts = async (type) => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/products?type=${type}`);
+                const response = await axios.get(`http://localhost:8000/api/products?category=${type}`);
                 setPopularProduct(response.data);
             } catch (error) {
                 console.error(`Failed to fetch ${type} Products info:`, error);
@@ -32,30 +32,8 @@ function Product() {
             }
         };
 
-        const fetchMobile = async () => {
-            await fetchProducts('Mobiles');
-        };
-
-        const fetchLaptop = async () => {
-            await fetchProducts('Laptops');
-        };
-
-        const fetchCloth = async () => {
-            await fetchProducts('Cloths');
-        };
-
-        const fetchWatch = async () => {
-            await fetchProducts('Watches');
-        };
-
-        const fetchAll = async () => {
-            await fetchAllProducts();
-        };
+       
     const [activeTag, setActiveTag] = useState('All');
-
-    const handleTagClick = (tag) => {
-        setActiveTag(tag);
-    };
 
     useEffect(() => {
         fetchDefaultProducts();
@@ -73,37 +51,38 @@ function Product() {
             <div className="nav flex w-full h-20 bg-purple-50 items-center justify-center underline">
                 <label
                     className={`mx-4 cursor-pointer ${activeTag === 'Mobiles' ? 'text-purple-500 font-bold' : 'text-black'}`}
-                    onClick={() =>{ handleTagClick('Mobiles') ; fetchMobile()}}
+                    onClick={() =>{ fetchProducts('66d2de70f878e7109685d290') }}
                 >
                     Mobiles
                 </label>
                 <label
                     className={`mx-4 cursor-pointer ${activeTag === 'Laptops' ? 'text-purple-500 font-bold' : 'text-black'}`}
-                    onClick={() => {handleTagClick('Laptops') ; fetchLaptop()}}
+                    onClick={() => {fetchProducts('66d2dde7f878e7109685d28a') }}
                 >
                     Laptops
                 </label>
                 <label
-                    className={`mx-4 cursor-pointer ${activeTag === 'Cloths' ? 'text-purple-500 font-bold' : 'text-black'}`}
-                    onClick={() => {handleTagClick('Cloths') ; fetchCloth()}}
+                    className={`mx-4 cursor-pointer ${activeTag === 'Clothes' ? 'text-purple-500 font-bold' : 'text-black'}`}
+                    onClick={() => {fetchProducts('66d3849e8a602b371294d7f7') }}
                 >
                     Cloths
                 </label>
                 <label
                     className={`mx-4 cursor-pointer ${activeTag === 'Watches' ? 'text-purple-500 font-bold' : 'text-black'}`}
-                    onClick={() => {handleTagClick('Watches') ; fetchWatch()}}
+                    onClick={() => {fetchProducts('66d2df41f878e7109685d2ad')}}
                 >
                     Watches
                 </label>
                 <label
                     className={`mx-4 cursor-pointer ${activeTag === 'All' ? 'text-purple-500 font-bold' : 'text-black'}`}
-                    onClick={() => { handleTagClick('All') ; fetchAll()}}
+                    onClick={() => {fetchAllProducts()}}
                 >
                     All
                 </label>
+                
                 <div className="relative">
 
-                    <label htmlFor="subfilter" className="mx-4 cursor-pointer">Subfilter:</label>
+                    <label htmlFor="subfilter" className="mx-4 cursor-pointer">Sort :</label>
                     <select
                         id="subfilter"
                         className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
