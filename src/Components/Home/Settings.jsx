@@ -7,7 +7,9 @@ const Input = styled('input')({
     display: 'none',
 });
 
+
 export default function Settings() {
+    useEffect(()=>{document.title="Manage Your Settings "},[] )
     const [loader, setLoader] = useState(false)
     const [active, setActive] = useState('')
     const [profilePicture, setProfilePicture] = useState(null);

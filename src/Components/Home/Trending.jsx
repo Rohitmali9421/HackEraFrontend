@@ -20,4 +20,4 @@ const Trending= () => {
   )
 }
 
-export default Tranding
+export default Trending

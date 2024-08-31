@@ -147,7 +147,7 @@ function Header() {
               </div>
             ) : (
               <Link to="/login">
-                <button className='px-5 py-2 text-sm rounded-full text-white border-2 border-[#007bff] bg-[#007bff] hover:bg-[#004bff]'>
+                <button className='px-5 py-2 text-sm rounded-full  border-2 border-purple-700 bg-purple-200 hover:bg-purple-300 text-purple-700'>
                   Sign In
                 </button>
               </Link>

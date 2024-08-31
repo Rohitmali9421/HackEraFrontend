@@ -5,7 +5,7 @@ import Category from "./Category";
 import Landingpage from "./Landingpage";
 function Home() {
     
-    useEffect(()=>{document.title = "BitKart: Home";})
+    useEffect(()=>{document.title = "BeatMart: Home";})
     return (
 
         <main>

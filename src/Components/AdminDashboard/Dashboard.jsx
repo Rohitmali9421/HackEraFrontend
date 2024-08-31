@@ -22,7 +22,7 @@ function Dashboard() {
 //             window.location.href = '/login';
 //         }
 //     },[])
-//     useEffect(() => { document.title = "BitKart: Admin Dashboard"; })
+    useEffect(() => { document.title = "BeatMart: Admin Dashboard"; })
     return (
         <div className='w-full p-6'>
             <div className='w-full'>
