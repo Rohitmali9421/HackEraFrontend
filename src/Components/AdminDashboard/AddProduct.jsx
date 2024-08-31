@@ -11,10 +11,11 @@ function AddProduct() {
     const [loder, setloder] = useState(false)
     const addProduct = async (data) => {
         setloder(true)
-        const { name, price, description, content, category } = data
+        log(category)
+        const { title, price, description, content, category } = data
         try {
-            const response=await axios.post('http://localhost:8000/api/product', {
-                name,
+            const response=await axios.post('https://mern-server-rohit.vercel.app/api/products', {
+                title,
                 price,
                 description,
                 content,
@@ -64,9 +65,9 @@ function AddProduct() {
                                 className='outline-none border focus:border-blue-700 px-3 py-2 my-2 rounded-md text-sm md:px-5 text-gray-600 font-normal w-full'
                                 type="text"
                                 placeholder="Product Name"
-                                name="name"
+                                name="title"
                                 id="productName"
-                                {...register("name", {
+                                {...register("title", {
                                     required: 'Name is required',
                                     minLength: {
                                         value: 3,
