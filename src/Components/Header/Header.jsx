@@ -15,7 +15,7 @@ function Header() {
   const navigate = useNavigate();
   const toggleMenu = () => {
     console.log(menu);
-    
+
     setMenu(!menu);
   };
 
@@ -29,7 +29,7 @@ function Header() {
           <img src={logo} alt="logo" className='h-14 cursor-pointer' />
         </Link>
 
-         <div id="collapseMenu"
+        <div id="collapseMenu"
           className={`lg:ml-10 font-thin shadow-xl `}>
           <ul className='lg:flex lg:gap-x-3 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 text-'>
             <li>
@@ -69,15 +69,15 @@ function Header() {
               </NavLink>
             </li>
             {auth.user && auth.user.role === 1 && (
-               <li>
-               <NavLink
-                 to="/admin"
-                 className={({ isActive }) =>
-                   ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
-                 }>
-                 Dashboard
-               </NavLink>
-             </li>
+              <li>
+                <NavLink
+                  to="/admin"
+                  className={({ isActive }) =>
+                    ` ${isActive ? "text-blue-500" : "text-black"} lg:mx-2 mx-1 font-semibold hover:text-gray-700`
+                  }>
+                  Dashboard
+                </NavLink>
+              </li>
             )}
           </ul>
         </div>
@@ -135,7 +135,7 @@ function Header() {
                 className="relative cursor-pointer flex items-center gap-4 p-2 mr-10 rounded-md"
                 onMouseEnter={() => setUserMenu(true)}
                 onMouseLeave={() => setUserMenu(false)}
-               >
+              >
                 {userMenu && (
                   <div className="absolute bg-slate-200 text-center flex flex-col p-4  w-40 top-[60px] gap-2 -right-1 rounded-md shadow-md">
                     <Link to="/cart" className='rounded-xl p-1 cursor-pointer hover:bg-slate-300'>My Cart</Link>

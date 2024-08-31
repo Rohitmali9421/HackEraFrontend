@@ -42,7 +42,6 @@ function ProductDetail() {
             view_time: timeSpent / 1000,
             product_name: product.title,
             product_id: product._id,
-            // product_id: 'jiojoijo',
             liked: 0,
             visit_count: 1,
           });
