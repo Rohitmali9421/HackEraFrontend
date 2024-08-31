@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import Baner from "./Baner";
-import Landingpage from "./Landingpage";
-import Footer from "../Footer/Footer";
-import ProductCard from "../Product/ProductCard";
-import Tranding from "./Tranding";
+import Tranding from "./Trending";
+import Category from "./Category";
 
 function Home() {
     
@@ -17,7 +15,7 @@ function Home() {
           <Tranding/>
           
 
-            {/* <Footer/> */}
+           
             
 
         </main>
