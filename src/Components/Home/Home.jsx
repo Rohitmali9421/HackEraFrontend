@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import Baner from "./Baner";
-import Trending from "./Trending";
 import Category from "./Category";
 import Landingpage from "./Landingpage";
+import Trending from "./Trending";
 function Home() {
     
     useEffect(()=>{document.title = "BitKart: Home";})
@@ -10,7 +10,7 @@ function Home() {
 
         <main>
             <Baner/>
-            <Landingpage/>
+            {/* <Landingpage/> */}
 
           <Trending/>
           

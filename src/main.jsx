@@ -15,6 +15,7 @@ import Cart from './Components/Cart/Cart.jsx';
 import About from './Components/About/About.jsx';
 import Support from './Components/Support/Support.jsx';
 import Product from './Components/Product/Product.jsx';
+import ProductDetail from './Components/Product/ProductDetail.jsx';
 
 import AdminDashboard from './Components/AdminDashboard/AdminDashboard.jsx';
 import Dashboard from './Components/AdminDashboard/Dashboard.jsx';
@@ -24,7 +25,7 @@ import Orders from './Components/AdminDashboard/Orders.jsx';
 import Coupons from './Components/AdminDashboard/Coupons.jsx';
 import AddProduct from './Components/AdminDashboard/AddProduct.jsx';
 import EditProduct from './Components/AdminDashboard/EditProducts.jsx';
-import { ProductDetail } from './Components/Product/ProductDetail.jsx';
+
 import CategoryProvider from './Contexts/CategoryContext.jsx';
 import Settings from './Components/Home/Settings.jsx';
 
@@ -36,7 +37,7 @@ const router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="product" element={<Product />} />
-        <Route path="productdetail" element={<ProductDetail />} />
+        <Route path="product/:id" element={<ProductDetail/>} />
         <Route path="about" element={<About />} />
         <Route path="support" element={<Support />} />
         <Route path="cart" element={<Cart />} />

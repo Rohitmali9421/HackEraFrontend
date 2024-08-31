@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCard from '../Product/ProductCard'
+import ProductCard from './ProductCard'
 
 const Trending= () => {
   return (
@@ -20,4 +20,4 @@ const Trending= () => {
   )
 }
 
-export default Tranding
+export default Trending

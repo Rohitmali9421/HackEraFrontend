@@ -68,14 +68,11 @@ function Header() {
         </div>
 
         <div className="flex gap-x-6 gap-y-4 ml-auto items-center">
-        <SearchBar/>
+          <SearchBar />
 
-          <div className='flex items-center space-x-8 '>
+          <div className='flex items-center space-x-8'>
             <span className="relative cursor-pointer"
               onClick={() => setShowFav(!showFav)}
-              // onMouseEnter={() => setShowFav(true)}
-              // onMouseLeave={() => setShowFav(false)}
-              
             >
               {showFav && (
                 <div className="absolute -bottom-20 right-0 z-10 w-40 bg-slate-200 h-min rounded-md shadow-sm p-4">
@@ -91,13 +88,13 @@ function Header() {
                 </div>
               )}
               <FaRegHeart className='text-2xl' />
-              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">{auth.user?auth.user.cart.length:0}</span>
+              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">
+                {auth.user ? auth.user.fav.length : 0}
+              </span>
             </span>
 
             <span className="relative cursor-pointer"
               onClick={() => setShowCart(!showCart)}
-              // onMouseEnter={() => setShowCart(true)}
-              // onMouseLeave={() => setShowCart(false)}
             >
               {showCart && (
                 <div className="absolute -bottom-20 right-0 z-10 w-40 bg-slate-200 h-min rounded-md shadow-sm p-4">
@@ -113,8 +110,9 @@ function Header() {
                 </div>
               )}
               <PiShoppingCartBold className='text-2xl' />
-              {/* <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">{auth.user?auth.user.fav.length:0}</span> */}
-              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">{auth.user?4:0}</span>
+              <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">
+                {auth.user? auth.user.cart.length : 0}
+              </span>
             </span>
 
             {auth.user ? (
@@ -125,10 +123,12 @@ function Header() {
               >
                 {userMenu && (
                   <div className="absolute bg-slate-200 text-center flex flex-col p-4  w-40 top-[60px] gap-2 -right-1 rounded-md shadow-md">
-                    <Link  to="/cart" className='rounded-xl p-1 cursor-pointer hover:bg-slate-300' >My Cart</Link>
-                    <Link to="/settings"><p className='rounded-xl p-1 cursor-pointer hover:bg-slate-300'
-                    
-                    >Update Profile</p></Link>
+                    <Link to="/cart" className='rounded-xl p-1 cursor-pointer hover:bg-slate-300'>My Cart</Link>
+                    <Link to="/settings">
+                      <p className='rounded-xl p-1 cursor-pointer hover:bg-slate-300'>
+                        Update Profile
+                      </p>
+                    </Link>
                     <p className='rounded-xl p-1 bg-red-500 text-white cursor-pointer hover:bg-red-600' onClick={logout}>Logout</p>
                   </div>
                 )}
@@ -142,8 +142,6 @@ function Header() {
                   <p className="text-sm font-normal">{auth.user.role ? "Admin" : "User"}</p>
                 </div>
                 <img src={"src/assets/downArrow.png"} alt="" className="h-2 w-3 rounded-full" />
-
-                
               </div>
             ) : (
               <Link to="/login">
@@ -159,11 +157,10 @@ function Header() {
   );
 }
 
-export default Header;
 function SearchBar() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleInputChange = async (event) => {
     const newQuery = event.target.value;
@@ -175,15 +172,17 @@ function SearchBar() {
     }
 
     try {
-      const response = await axios.get(`https://your-backend-api/search?query=${newQuery}`);
+      const response = await axios.get(`http://localhost:8000/api/products/search?query=${newQuery}`);
       setResults(response.data);
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
   };
 
-  const handleResultClick = (category) => {
-    navigate(`/category/${category.id}`);
+  const handleResultClick = (result) => {
+    setQuery(result.title);
+    setResults([]);
+    navigate(`/product/${result._id}`); // Navigate to the product page
   };
 
   return (
@@ -209,27 +208,30 @@ function SearchBar() {
           </svg>
         </button>
         <input
-          className="input rounded-full px-8 py-2 border-2 border-gray-400 focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md bg-slate-100 w-full"
-          placeholder="Search..."
-          required=""
+          className="input rounded-full px-8 py-2 w-full text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           type="text"
+          placeholder="Search products..."
           value={query}
           onChange={handleInputChange}
         />
       </form>
       {results.length > 0 && (
-        <div className="absolute bg-white shadow-md rounded mt-2 w-full">
-          {results.map((result) => (
-            <div
-              key={result.id}
-              className="p-2 hover:bg-gray-200 cursor-pointer"
-              onClick={() => handleResultClick(result)}
-            >
-              {result.name}
-            </div>
-          ))}
+        <div className="absolute mt-1 bg-white border border-gray-300 rounded-md shadow-lg w-full">
+          <ul>
+            {results.map((result) => (
+              <li
+                key={result._id}
+                className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                onClick={() => handleResultClick(result)}
+              >
+                {result.title}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
   );
 }
+
+export default Header;
