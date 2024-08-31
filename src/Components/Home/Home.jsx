@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Baner from "./Baner";
-import Tranding from "./Trending";
+import Trending from "./Trending";
 import Category from "./Category";
 import Landingpage from "./Landingpage";
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
             <Baner/>
             <Landingpage/>
 
-          <Tranding/>
+          <Trending/>
           
 
            
