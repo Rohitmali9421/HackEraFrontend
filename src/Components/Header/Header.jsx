@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FaRegHeart } from "react-icons/fa6";
 import { PiShoppingCartBold } from "react-icons/pi";
@@ -7,12 +7,26 @@ import { IoMdSearch } from "react-icons/io";
 import { LiaCreativeCommonsSampling } from "react-icons/lia";
 import { useAuth } from '../../Contexts/UserContext';
 import logo from '../../assets/logo.jpg';
+import { useContext } from 'react';
 function Header() {
+  const [favList, setFavList] = useState([]);
   const [menu, setMenu] = useState(false);
+  const [showFav, setShowFav] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+
   const { auth, logout } = useAuth()
+  const user = auth.user;
   const toggleMenu = () => {
     setMenu(!menu);
   };
+  useEffect(() => {
+    if (!auth.user) {
+      // window.location.href = '/login';
+      setFavList([]);
+    } else {
+      setFavList(auth.user.favList || [112, 123, 312]);
+    }
+  }, [user])
 
   const [dropdown, setDropdown] = useState(false);
   const toggleDropdown = () => {
@@ -80,12 +94,59 @@ function Header() {
           </div>
 
           <div className='flex items-center space-x-8'>
-            <span className="relative">
+            <span className="relative cursor-pointer"
+              onClick={() => setShowFav(!showFav)}
+            >
+              {showFav && (
+                <div className="absolute -bottom-20 right-0 z-10 w-40 bg-slate-200 h-min rounded-md shadow-sm p-4">
+                  {favList.length > 0 ? (
+                    favList.map((item) => (
+                      <div key={item} className="flex items-center gap-2">
+                        <img src="https://via.placeholder.com/150" alt="product" className="w-10 h-10" />
+                        <div>
+                          <h1 className="text-sm">Product Name</h1>
+                          <p className="text-xs text-gray-500">Price: $20</p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <Link to="/login">
+                      <button
+                        className='w-full px-5 py-2 text-sm rounded-full text-white border-2 border-[#007bff] bg-[#007bff] hover:bg-[#004bff]'>Login</button>
+                    </Link>
+
+                  )}
+                </div>
+              )}
               <FaRegHeart className=' text-2xl' />
               <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">0</span>
             </span>
 
-            <span className="relative">
+            <span className="relative"
+              onClick={() => setShowCart(!showCart)}
+            >
+
+              {showCart && (
+                <div className="absolute -bottom-20 right-0 z-10 w-40 bg-slate-200 h-min rounded-md shadow-sm p-4">
+                  {favList.length > 0 ? (
+                    favList.map((item) => (
+                      <div key={item} className="flex items-center gap-2">
+                        <img src="https://via.placeholder.com/150" alt="product" className="w-10 h-10" />
+                        <div>
+                          <h1 className="text-sm">Product Name</h1>
+                          <p className="text-xs text-gray-500">Price: $20</p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <Link to="/login">
+                      <button
+                        className='w-full px-5 py-2 text-sm rounded-full text-white border-2 border-[#007bff] bg-[#007bff] hover:bg-[#004bff]'>Login</button>
+                    </Link>
+
+                  )}
+                </div>
+              )}
               <PiShoppingCartBold className='text-2xl' />
               <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">0</span>
             </span>

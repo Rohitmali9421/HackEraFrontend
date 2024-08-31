@@ -10,7 +10,18 @@ import 'react-calendar/dist/Calendar.css';
 import logo from '../../assets/logo.jpg';
 import Feedback from './Feedback';
 import ChartBoi from './ChartBoi';
+import { useContext } from 'react';
+import { useAuth } from '../../Contexts/UserContext';
+
 function Dashboard() {
+
+  const { auth, logout } = useAuth()
+  const  user  = auth.user;
+    useEffect(()=>{
+        if(!user || user.role !== 'admin'){
+            window.location.href = '/login';
+        }
+    },[])
     useEffect(() => { document.title = "BitKart: Admin Dashboard"; })
     return (
         <div className='w-full p-6'>
