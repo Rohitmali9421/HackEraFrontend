@@ -36,8 +36,8 @@ import Settings from './Components/Home/Settings.jsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path='/' element={<Layout />}>
-        <Route path='' element={<Home />} />
+      {/* <Route path='/' element={<Layout />}> */}
+        <Route path='/' element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="product" element={<Product />} />
@@ -46,7 +46,6 @@ const router = createBrowserRouter(
         <Route path="support" element={<Support />} />
         <Route path="cart" element={<Cart />} />
         <Route path="Settings" element={<Settings />} />
-      </Route>
       <Route path="/admin" element={<AdminDashboard />}>
         <Route path="" element={<Dashboard />} />
         <Route path="products" element={<Products />} />
