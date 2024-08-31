@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { TextField, Button, Avatar, Container, Typography, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/system';
-
+import axios from 'axios'
+import { useAuth } from '../../Contexts/UserContext';
 const Input = styled('input')({
     display: 'none',
 });
 
 export default function Settings() {
+    const [loader, setLoader]=useState(false)
     const [active, setActive] = useState('')
     const [profilePicture, setProfilePicture] = useState(null);
     const [fname, setFName] = useState('');
@@ -17,6 +19,8 @@ export default function Settings() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [gender, setGender] = useState('');
+    const {auth}=useAuth();
+
 
 
     const handleFNameChange = (event) => {
@@ -45,7 +49,6 @@ export default function Settings() {
 
     const handleConfirmPasswordChange = (event) => {
         setConfirmPassword(event.target.value);
-
     };
 
     const handleEmail = (event) => {
@@ -61,14 +64,42 @@ export default function Settings() {
     };
 
 
-    const handlePassordSubmit=(event)=>{
+    const handlePassordSubmit = (event) => {
         event.preventDefault();
-        if(pin===password || pin===confirmPassword){
+
+        if (pin === password || pin === confirmPassword) {
             alert("Cannot have old and new password same")
         }
-        if(password!==confirmPassword){
+        if (password !== confirmPassword) {
             alert('Password do not match')
         }
+
+        const fullname = fname + " " + lname
+
+
+        const updateUser = async () => {
+            try {
+              const formData = new FormData();
+              formData.append('profile_picture', profilePicture.files[0]); // Assuming you have a file input
+              formData.append('name', fullname); // Add other fields as necessary
+          
+              const response = await axios.put('http://your-server-url/update-user', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                  'Authorization': 'Bearer your-token' // If authentication is required
+                }
+              });
+          
+              console.log(response.data);
+            } catch (error) {
+              console.error('Error updating user:', error);
+            }
+          };
+          
+          updateUser();
+
+
+
     }
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -134,7 +165,7 @@ export default function Settings() {
                                     <label htmlFor="lastName"
                                         className="block text-gray-700 mb-2">Last Name</label>
                                     <input type="text" id="lastName" value={lname} onChange={handleLNameChange} name="lastName" className="w-full shadow-md px-4 py-2  
- border rounded-md focus:outline-none focus:border-blue-500" required />
+ border rounded-md focus:outline-none focus:border-blue-500" />
                                 </div>
                             </div>
 
@@ -180,18 +211,18 @@ export default function Settings() {
                     <div className="container mx-auto max-w-full p-4 bg-white rounded-lg shadow">
                         <form>
 
-                                <div className="mb-4 ">
-                                    <label htmlFor="curentPass" className="block text-gray-700 mb-2">Current password</label>
-                                    <input type="password" id="curentPass" value={pin} onChange={handlePinChange} name="curentPass" className="w-full px-4 py-2 shadow-md 
+                            <div className="mb-4 ">
+                                <label htmlFor="curentPass" className="block text-gray-700 mb-2">Current password</label>
+                                <input type="password" id="curentPass" value={pin} onChange={handlePinChange} name="curentPass" className="w-full px-4 py-2 shadow-md 
  border rounded-md focus:outline-none focus:border-blue-500" required />
-                                </div>
+                            </div>
 
-                                <div className="mb-4 ">
-                                    <label htmlFor="pass"
-                                        className="block text-gray-700 mb-2">New Password</label>
-                                    <input type="text" id="pass" value={password} onChange={handlePasswordChange} name="pass" className="w-full shadow-md px-4 py-2  
+                            <div className="mb-4 ">
+                                <label htmlFor="pass"
+                                    className="block text-gray-700 mb-2">New Password</label>
+                                <input type="text" id="pass" value={password} onChange={handlePasswordChange} name="pass" className="w-full shadow-md px-4 py-2  
  border rounded-md focus:outline-none focus:border-blue-500" required />
-                                </div>
+                            </div>
 
                             <div className="mb-4">
                                 <label htmlFor="confirmPass" className="block text-gray-700 
@@ -201,7 +232,7 @@ export default function Settings() {
                             </div>
 
                             <button type="submit" className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                            onClick={handlePassordSubmit}
+                                onClick={handlePassordSubmit}
                             >Save</button>
                         </form>
                     </div>
