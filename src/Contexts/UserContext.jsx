@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
 
   const addToCart = async (id) => {
     try {
-      await axios.patch('https://mern-server-rohit.vercel.app/user/cart', {
+      await axios.patch('http://localhost:8000/user/cart', {
         productId: id
       });
       toast.success("Added to cart");
