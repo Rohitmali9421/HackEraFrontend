@@ -18,7 +18,7 @@ function Products() {
   const fetchProducts = async () => {
     try {
       setLoader(true);
-      const response = await axios.get('https://mern-server-rohit.vercel.app/api/products');
+      const response = await axios.get('http://localhost:8000/api/products');
       setProducts(response.data);
       setLoader(false);
     } catch (error) {

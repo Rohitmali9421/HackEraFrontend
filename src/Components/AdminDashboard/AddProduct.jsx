@@ -11,14 +11,15 @@ function AddProduct() {
     const [loder, setloder] = useState(false)
     const addProduct = async (data) => {
         setloder(true)
-        log(category)
-        const { title, price, description, content, category } = data
+        
+        const { title, price, description, category } = data
+        
+        
         try {
-            const response=await axios.post('https://mern-server-rohit.vercel.app/api/products', {
+            const response=await axios.post('http://localhost:8000/api/products', {
                 title,
                 price,
                 description,
-                content,
                 image,
                 category
             }, {
@@ -94,24 +95,7 @@ function AddProduct() {
                             />
                             {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description.message}</p>}
                         </div>
-                        <div className='my-1'>
-                            <label className='text-sm font-semibold px-1 text-gray-800' htmlFor="productContent">Product Content <sup className='text-red-400'>*</sup></label>
-                            <input
-                                className='outline-none border focus:border-blue-700 px-3 py-2 my-2 rounded-md text-sm md:px-5 text-gray-600 font-normal w-full'
-                                type="text"
-                                placeholder="Product Content"
-                                name="content"
-                                id="productContent"
-                                {...register("content", {
-                                    required: 'Content is required',
-                                    minLength: {
-                                        value: 20,
-                                        message: 'Content must be at least 20 characters long'
-                                    }
-                                })}
-                            />
-                            {errors.content && <p className="text-red-500 text-xs mt-1">{errors.content.message}</p>}
-                        </div>
+                        
 
                         <div className='my-1'>
                             <label htmlFor="productCategory" className='text-sm font-semibold px-1 text-gray-800'>Category</label>
