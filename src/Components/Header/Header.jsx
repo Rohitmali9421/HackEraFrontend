@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FaRegHeart, FaBars } from "react-icons/fa6";
 import { PiShoppingCartBold } from "react-icons/pi";
+import axios from 'axios';
 import { useAuth } from '../../Contexts/UserContext';
 import logo from '../../assets/logo.jpg';
 
@@ -159,51 +160,76 @@ function Header() {
 }
 
 export default Header;
-
 function SearchBar() {
   const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const navigate = useNavigate()
 
-  const handleInputChange = (event) => {
-    setQuery(event.target.value);
+  const handleInputChange = async (event) => {
+    const newQuery = event.target.value;
+    setQuery(newQuery);
+
+    if (newQuery.trim() === '') {
+      setResults([]);
+      return;
+    }
+
+    try {
+      const response = await axios.get(`https://your-backend-api/search?query=${newQuery}`);
+      setResults(response.data);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Perform your query logic here
-    console.log('Query:', query);
-    // Example: Redirect to a search results page
-    window.location.href = `/search?query=${encodeURIComponent(query)}`;
+  const handleResultClick = (category) => {
+    navigate(`/category/${category.id}`);
   };
 
   return (
-    <form className="form relative w-50" onSubmit={handleSubmit}>
-      <button type="submit" className="absolute left-2 -translate-y-1/2 top-1/2 p-1">
-        <svg
-          width="17"
-          height="16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-labelledby="search"
-          className="w-5 h-5 text-gray-700"
-        >
-          <path
-            d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
-            stroke="currentColor"
-            strokeWidth="1.333"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          ></path>
-        </svg>
-      </button>
-      <input
-        className="input rounded-full px-8 py-2 border-2 border-gray-400 focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md bg-slate-100 w-full"
-        placeholder="Search..."
-        required=""
-        type="text"
-        value={query}
-        onChange={handleInputChange}
-      />
-    </form>
+    <div className="relative w-50">
+      <form className="form" onSubmit={(e) => e.preventDefault()}>
+        <button type="submit" className="absolute left-2 -translate-y-1/2 top-1/2 p-1">
+          <svg
+            width="17"
+            height="16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="search"
+            className="w-5 h-5 text-gray-700"
+          >
+            <path
+              d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+              stroke="currentColor"
+              strokeWidth="1.333"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            ></path>
+          </svg>
+        </button>
+        <input
+          className="input rounded-full px-8 py-2 border-2 border-gray-400 focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md bg-slate-100 w-full"
+          placeholder="Search..."
+          required=""
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+        />
+      </form>
+      {results.length > 0 && (
+        <div className="absolute bg-white shadow-md rounded mt-2 w-full">
+          {results.map((result) => (
+            <div
+              key={result.id}
+              className="p-2 hover:bg-gray-200 cursor-pointer"
+              onClick={() => handleResultClick(result)}
+            >
+              {result.name}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
