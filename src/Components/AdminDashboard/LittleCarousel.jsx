@@ -58,6 +58,7 @@ export default function LittleCarousel() {
     return (
         <Slider {...settings} className=" w-[100%] lg:w-[40%] h-60 flex items-end justify-end ">
             {
+
                 data.map((key, index) => {
                     const starCount = key.starts
                     let i=0;

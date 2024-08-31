@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { GiNotebook } from "react-icons/gi";
 import { BsGraphUp } from "react-icons/bs";
 import { VscGraph } from "react-icons/vsc";
 import { TbUsersGroup } from "react-icons/tb";
 import { BsFillBoxSeamFill } from "react-icons/bs";
-import { BarChart } from '@mui/x-charts/BarChart';
 import LittleCarousel from './LittleCarousel';
-import { PieChart } from '@mui/x-charts/PieChart';
 import 'react-calendar/dist/Calendar.css';
-import logo from '../../assets/logo.jpg';
-import Feedback from './Feedback';
 import ChartBoi from './ChartBoi';
-import { useContext } from 'react';
 import { useAuth } from '../../Contexts/UserContext';
 
 function Dashboard() {
@@ -104,14 +99,24 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-            <div className='w-full flex py-4 items-center flex-col justify-around overflow-clip gap-4 lg:flex-row '>
+            <div className='relative'>
+                <div className='flex justify-between  w-full'>
 
-                <ChartBoi />
+                    <h1 className='font-semibold text-2xl my-2 w-[60%]'>Sales Overview</h1>
+                    <h1 className='hidden lg:block font-semibold text-2xl my-2 w-[40%]'>User Feedback</h1>
+                </div>
+                <div className='w-full flex py-4 items-center flex-col justify-around overflow-clip gap-4 lg:flex-row '>
+
+                    <ChartBoi />
 
 
-                {/* <Feedback /> */}
-                <LittleCarousel />
-                
+                    {/* <Feedback /> */}
+                    <h1 className='block lg:hidden font-semibold text-start text-2xl my-2 w-full '>
+                        User Feedback
+                    </h1>
+                    <LittleCarousel />
+
+                </div>
             </div>
         </div >
     )

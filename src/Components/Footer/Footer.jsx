@@ -40,7 +40,7 @@ function Footer() {
       <hr className="my-4" />
       <div className="mx-auto max-w-6xl items-center justify-between px-4 md:flex lg:px-0">
         <div className="inline-flex items-center">
-          <img src="https://img.icons8.com/cotton/100/fast-shopping--v2.png" height={30} width={30} alt="" srcset="" />
+          <img src="https://img.icons8.com/cotton/100/fast-shopping--v2.png" height={30} width={30} alt="" srcSet="" />
           <span className="ml-4 text-lg font-bold">BeatMart</span>
         </div>
         <div className="mt-4 md:mt-0">
