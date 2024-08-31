@@ -25,9 +25,10 @@ import Orders from './Components/AdminDashboard/Orders.jsx';
 import Coupons from './Components/AdminDashboard/Coupons.jsx';
 import AddProduct from './Components/AdminDashboard/AddProduct.jsx';
 import EditProduct from './Components/AdminDashboard/EditProducts.jsx';
-
+import ErrorPage from './Components/ErrorPage.jsx';
 import CategoryProvider from './Contexts/CategoryContext.jsx';
 import Settings from './Components/Home/Settings.jsx';
+import OurTeam from './Components/About/OurTeam.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,6 +43,7 @@ const router = createBrowserRouter(
         <Route path="support" element={<Support />} />
         <Route path="cart" element={<Cart />} />
         <Route path="Settings" element={<Settings />} />
+        <Route path="/ourteam" element={<OurTeam />} />
         
       </Route>
       <Route path="/admin" element={<AdminDashboard />}>
@@ -53,6 +55,7 @@ const router = createBrowserRouter(
           <Route path="orders" element={<Orders />} />
           <Route path="coupons" element={<Coupons />} />
         </Route>
+        <Route path="*" element={<ErrorPage/>} />
     </>
   )
 );

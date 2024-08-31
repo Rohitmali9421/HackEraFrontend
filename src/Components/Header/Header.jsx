@@ -12,7 +12,7 @@ function Header() {
   const [showCart, setShowCart] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const { auth, logout } = useAuth();
-
+  const navigate = useNavigate();
   const toggleMenu = () => {
     setMenu(!menu);
   };
@@ -23,7 +23,9 @@ function Header() {
         <button id="toggleOpen" className='lg:hidden' onClick={toggleMenu}>
           <FaBars className='text-xl' />
         </button>
-        <img src={logo} alt="logo" className='h-14' />
+        <Link to="/" className='lg:ml-10'>
+          <img src={logo} alt="logo" className='h-14 cursor-pointer' />
+        </Link>
 
         <div id="collapseMenu"
           className={`lg:ml-10 max-lg:hidden lg:!block ${menu ? 'block' : 'hidden'}`}>
@@ -111,7 +113,7 @@ function Header() {
               )}
               <PiShoppingCartBold className='text-2xl' />
               <span className="absolute left-auto ml-4 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">
-                {auth.user? auth.user.cart.length : 0}
+                {auth.user ? auth.user.cart.length : 0}
               </span>
             </span>
 
