@@ -10,9 +10,9 @@ Ensure you have the following installed:
 1. **Clone the repository**:
 
    ```bash
-    git clone https://github.com/Rohitmali9421/HackEraFrontend.git
+    git clone https://github.com/Rohitmali9421/HackEraBackend.git
 
-    cd  HackEraFrontend
+    cd  HackEraBackend
 
     npm i
 
