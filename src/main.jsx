@@ -29,6 +29,7 @@ import ErrorPage from './Components/ErrorPage.jsx';
 import CategoryProvider from './Contexts/CategoryContext.jsx';
 import Settings from './Components/Home/Settings.jsx';
 import OurTeam from './Components/About/OurTeam.jsx';
+import Cart from './Components/Cart/Cart.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,7 +42,7 @@ const router = createBrowserRouter(
         <Route path="product/:id" element={<ProductDetail/>} />
         <Route path="about" element={<About />} />
         <Route path="support" element={<Support />} />
-        {/* <Route path="cart" element={<Cart />} /> */}
+        <Route path="cart" element={<Cart />} />
         <Route path="Settings" element={<Settings />} />
         <Route path="/ourteam" element={<OurTeam />} />
         

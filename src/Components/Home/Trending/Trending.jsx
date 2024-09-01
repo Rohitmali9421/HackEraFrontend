@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Card from '../Card';
 import CardScrollLayout from '../CardScrollLayout';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 function Trending() {
     const[Products,setProduct]=useState(null)
     const fetchDefaultProducts = async (type) => {
@@ -23,7 +24,9 @@ function Trending() {
             </div>
             <CardScrollLayout>
             {Products?.map((product) => (
+                <Link to={`product/${product._id}`}>
                     <Card imageURL={product.image.url} key={product._id} name={product.title} />
+                    </Link>
                 ))}
             </CardScrollLayout>
 
