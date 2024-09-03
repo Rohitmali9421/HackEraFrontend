@@ -86,7 +86,7 @@ function AdminDashboard() {
                                 <h1 className='font-bold'>Category</h1>
                             </li>
                         </Link>
-                        <Link to="/admin/orders">
+                        {/* <Link to="/admin/orders">
                             <li className='flex items-center my-3 hover:bg-blue-50 rounded-md px-4 py-2'>
                                 <GiNotebook className='text-xl text-blue-500 mr-3' />
                                 <h1 className='font-bold'>Orders</h1>
@@ -97,7 +97,7 @@ function AdminDashboard() {
                                 <BiSolidCoupon className='text-xl text-blue-500 mr-3' />
                                 <h1 className='font-bold'>Coupons</h1>
                             </li>
-                        </Link>
+                        </Link> */}
                     </ul>
 
                     <ul className='mb-32'>

@@ -18,9 +18,9 @@ function NewLaunches() {
       <div className=' overflow-x-clip mt-8 mx-4 '>
         <CardScrollLayout>
           <Card imageURL="https://www.fireboltt.com/cdn/shop/files/Black_01_53a058b5-640b-450b-af00-901dff5815e6_540x.png?v=1720530551" name="Maverick" />
-          <Card imageURL="https://www.fireboltt.com/cdn/shop/files/Black_01_53a058b5-640b-450b-af00-901dff5815e6_540x.png?v=1720530551" name="Maverick" />
-          <Card imageURL="https://www.fireboltt.com/cdn/shop/files/Black_01_53a058b5-640b-450b-af00-901dff5815e6_540x.png?v=1720530551" name="Maverick" />
-          <Card imageURL="https://www.fireboltt.com/cdn/shop/files/Black_01_53a058b5-640b-450b-af00-901dff5815e6_540x.png?v=1720530551" name="Maverick" />
+          <Card imageURL="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/4/y/b/-original-imahyzygycuyg3mq.jpeg?q=70" name="Maverick" />
+          <Card imageURL="https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/q/m/s/-original-imah3zvdthupfejc.jpeg?q=70" name="Maverick" />
+          <Card imageURL="https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/t/q/0/-original-imagzuzzrfgytsfz.jpeg?q=70" name="Maverick" />
         </CardScrollLayout>
         
       </div>
